@@ -28,7 +28,7 @@ simple example; you can create arbitrarily complex topologies in Heron.
 
 There are currently two APIs available that you can use to build Heron topologies:
 
-1. The higher-level [Heron Streamlet API](#the-heron-streamlet-api) (recommended for new topologies), which enables you to create topologies in a declarative, developer-friendly style inspired by functional programming concepts (such as map, flatMap, and filter operations)
+1. The higher-level [Heron Streamlet API](#streamlet-api) (recommended for new topologies), which enables you to create topologies in a declarative, developer-friendly style inspired by functional programming concepts (such as map, flatMap, and filter operations)
 1. The lower-level [topology API](#the-topology-api) (*not* recommended for new topologies), based on the original [Apache Storm](http://storm.apache.org/about/simple-api.html) API, which requires you to specify spout and bolt logic directly
 
 ## Topology Lifecycle
@@ -58,11 +58,11 @@ lifecycle of a topology, which typically goes through the following stages:
 A topology's **logical plan** is analagous to a database [query
 plan](https://en.wikipedia.org/wiki/Query_plan) in that it maps out the basic
 operations associated with a topology. Here's an example logical plan for the
-example Streamlet API topology [below](#streamlet-api-example):
+example Streamlet API topology [below](#streamlet-api):
 
 ![Topology logical Plan](https://www.lucidchart.com/publicSegments/view/4e6e1ede-45f1-471f-b131-b3ecb7b7c3b5/image.png)
 
-Whether you use the [Heron Streamlet API](#the-heron-streamlet-api) or the [topology
+Whether you use the [Heron Streamlet API](#streamlet-api) or the [topology
 API](#the-topology-api), Heron automatically transforms the processing logic that
 you create into both a logical plan and a [physical plan](#physical-plan).
 
@@ -101,7 +101,7 @@ For sliding windows, you need to specify two things:
 1. The length or duration of the window (length if the window is a [count window](#count-windows), duration if the window is a [time window](#time-windows)).
 1. The sliding interval, which determines when the window slides, i.e. at what point during the current window the new window begins.
 
-In the figure above, the duration of the window is 10 seconds, while the sliding interval is 5 seconds. Each new window begins five seconds into the current window.
+In the figure above, the duration of the window is 20 seconds, while the sliding interval is 10 seconds. Each new window begins five seconds into the current window.
 
 > With sliding time windows, data can be processed in more than one window. Tuples 3, 4, and 5 above are processed in both window 1 and window 2 while tuples 6, 7, and 8 are processed in both window 2 and window 3.
 
@@ -119,7 +119,7 @@ Here, the sliding interval determines that a new window is always created 12 sec
 
 Tumbling windows don't overlap because a new window doesn't begin until the current window has elapsed. For tumbling windows, you only need to specify the length or duration of the window but *no sliding interval*.
 
-> With tumbling windows, data are *never* processed in more than one window because the windows never overlap.
+> With tumbling windows, data are *never* processed in more than one window because the windows never overlap. Also, in the figure above, the duration of the window is 20 seconds.
 
 ### Count windows
 
