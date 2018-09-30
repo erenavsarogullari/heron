@@ -48,7 +48,7 @@ Storm's [topology API](http://storm.apache.org/about/simple-api.html).
 
 Currently, Heron is compatible with topologies written using:
 
-1. The new [Heron Streamlet API](../topologies#the-streamlet-api) (recommended for new work), or
+1. The new [Heron Streamlet API](../streamlet-api) (recommended for new work), or
 1. The [Heron Topology API](../topologies#the-heron-topology-api)
 
 If you have existing topologies created using the [Storm API](http://storm.apache.org/about/simple-api.html),
